@@ -5,168 +5,298 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KVGD Official Value List</title>
 <style>
-    /* GENERAL STYLING */
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background-color: #121212;
-        color: #e0e0e0;
-    }
-    h1, h2 {
-        text-align: center;
-        color: #00bcd4;
-    }
-    h3 {
-        margin-top: 0;
-        color: #00bcd4;
-    }
-    p {
-        text-align: center;
-        font-size: 0.95rem;
-        color: #aaa;
-    }
-    /* TABS */
-    .tabs {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin: 20px 0;
-    }
-    .tab {
-        padding: 10px 20px;
-        margin: 5px;
-        background-color: #1f1f1f;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.2s;
-        color: #e0e0e0;
-    }
-    .tab:hover {
-        background-color: #00bcd4;
-        color: #121212;
-    }
-    .tab.active {
-        background-color: #00bcd4;
-        color: #121212;
-    }
-    /* TABLE STYLING */
-    table {
-        width: 90%;
-        margin: 0 auto 40px auto;
-        border-collapse: collapse;
-        background-color: #1f1f1f;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    th, td {
-        padding: 12px 15px;
-        text-align: left;
-    }
-    th {
-        background-color: #00bcd4;
-        color: #121212;
-    }
-    tr:nth-child(even) {
-        background-color: #2a2a2a;
-    }
-    tr:hover {
-        background-color: #333;
-    }
-    /* HIDE NON-ACTIVE TABLES */
-    .table-container {
-        display: none;
-    }
-    .table-container.active {
-        display: block;
-    }
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #1f1f1f;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #444;
+  }
+  h1 { margin: 0; font-size: 2rem; color: #f0a500; }
+  h2 { margin: 5px 0 15px 0; font-size: 1.2rem; color: #ffdd59; }
+  .last-updated { font-size: 0.9rem; color: #bbb; }
+
+  .tab { overflow: hidden; background-color: #1f1f1f; border-bottom: 2px solid #444; }
+  .tab button {
+    background-color: inherit; border: none; outline: none;
+    cursor: pointer; padding: 14px 16px; transition: 0.3s;
+    color: #e0e0e0; font-size: 1rem;
+  }
+  .tab button:hover { background-color: #333; }
+  .tab button.active { border-bottom: 3px solid #f0a500; color: #f0a500; }
+
+  .tabcontent { display: none; padding: 20px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+  th, td { padding: 10px; text-align: left; border-bottom: 1px solid #333; }
+  th { background-color: #222; color: #f0a500; }
+  tr:nth-child(even) { background-color: #1a1a1a; }
+  tr:hover { background-color: #2a2a2a; }
+  @media screen and (max-width: 768px) {
+    th, td { font-size: 0.9rem; }
+    .tab button { font-size: 0.9rem; padding: 10px 12px; }
+  }
 </style>
 </head>
 <body>
 
-<h1>KVGD Official Value List</h1>
-<h2>Knife VS Gun DUELS</h2>
-<p>Last Updated: December 15th, 2025 | Next Planned Update: Demands Section</p>
+<header>
+  <h1>KVGD Official Value List</h1>
+  <h2>Knife VS Gun DUELS</h2>
+  <p class="last-updated">Last Updated: December 15th, 2025 | Next Planned Update: Demands Section</p>
+</header>
 
-<div class="tabs">
-    <div class="tab active" data-target="sets">SETS</div>
-    <div class="tab" data-target="chromatic">CHROMATIC</div>
-    <div class="tab" data-target="ancient">ANCIENT</div>
-    <div class="tab" data-target="godly">GODLY</div>
-    <div class="tab" data-target="legendary">LEGENDARY</div>
-    <div class="tab" data-target="rare">RARE</div>
-    <div class="tab" data-target="common">COMMON</div>
+<div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Sets')" id="defaultOpen">SETS</button>
+  <button class="tablinks" onclick="openTab(event, 'Chromatic')">CHROMATIC</button>
+  <button class="tablinks" onclick="openTab(event, 'Ancient')">ANCIENT</button>
+  <button class="tablinks" onclick="openTab(event, 'Godly')">GODLY</button>
+  <button class="tablinks" onclick="openTab(event, 'Legendary')">LEGENDARY</button>
+  <button class="tablinks" onclick="openTab(event, 'Rare')">RARE</button>
+  <button class="tablinks" onclick="openTab(event, 'Common')">COMMON</button>
 </div>
 
-<div class="table-container active" id="sets">
-    <table>
-        <tr><th>Set Name</th><th>Category</th><th>Value</th></tr>
-        <tr><td>Yellow Streaksflare Gun + Yellow Streaksflare</td><td>Set</td><td>1430</td></tr>
-        <tr><td>Shellshocked Gun + Shellshocked</td><td>Set</td><td>1400</td></tr>
-        <tr><td>Floral Scope + Floral Axe</td><td>Set</td><td>1340</td></tr>
-        <tr><td>Inferno Gun + Inferno</td><td>Set</td><td>1230</td></tr>
-        <tr><td>Chromatic Ginger’s Edge + Gingerswirl</td><td>Set</td><td>980</td></tr>
-        <tr><td>Aurial + Aurion</td><td>Set</td><td>930</td></tr>
-        <tr><td>Chromatic Natural Gun + Natural</td><td>Set</td><td>680</td></tr>
-        <tr><td>Soulpiercer + Soulreaper</td><td>Set</td><td>640</td></tr>
-        <tr><td>Daydream Gun + Daydream</td><td>Set</td><td>630</td></tr>
-        <tr><td>Floral Beam + Floral Blade</td><td>Set</td><td>460</td></tr>
-        <tr><td>Riptidebringer + Riptide</td><td>Set</td><td>460</td></tr>
-        <tr><td>Blue Streaksflare Gun + Blue Streaksflare</td><td>Set</td><td>350</td></tr>
-        <tr><td>Dragonpiercer + Icewood</td><td>Set</td><td>255</td></tr>
-        <tr><td>Natural Gun + Natural</td><td>Set</td><td>180</td></tr>
-        <tr><td>Aurora Gun + Aurora</td><td>Set</td><td>165</td></tr>
-        <tr><td>Wrapped Gun + Wrapped</td><td>Set</td><td>155</td></tr>
-        <tr><td>Fusion Gun + Fusion</td><td>Set</td><td>155</td></tr>
-        <tr><td>Ghostly Gun + Ghostly</td><td>Set</td><td>145</td></tr>
-        <tr><td>Firesky Gun + Firesky</td><td>Set</td><td>125</td></tr>
-        <tr><td>Butterflies Gun + Butterflies</td><td>Set</td><td>115</td></tr>
-        <tr><td>Flowers Gun + Flowers</td><td>Set</td><td>115</td></tr>
-        <tr><td>Pumpkincrow Gun + Pumpkincrow</td><td>Set</td><td>105</td></tr>
-        <tr><td>Bats Gun + Bats</td><td>Set</td><td>75</td></tr>
-        <tr><td>Web Gun + Web</td><td>Set</td><td>75</td></tr>
-        <tr><td>Gingerman Gun + Gingerman</td><td>Set</td><td>60</td></tr>
-        <tr><td>Frosted Lab Gun + Frosted Lab</td><td>Set</td><td>60</td></tr>
-        <tr><td>Gyzen Gun + Gyzen</td><td>Set</td><td>60</td></tr>
-        <tr><td>Minty Gun + Minty</td><td>Set</td><td>60</td></tr>
-        <tr><td>Campfire Gun + Campfire</td><td>Set</td><td>50</td></tr>
-        <tr><td>Scarf Gun + Scarf</td><td>Set</td><td>50</td></tr>
-        <tr><td>Carrots Gun + Carrots</td><td>Set</td><td>50</td></tr>
-        <tr><td>Chocolate Gun + Chocolate</td><td>Set</td><td>35</td></tr>
-        <tr><td>Penguin Gun + Penguin</td><td>Set</td><td>35</td></tr>
-        <tr><td>Glowy Gun + Glowy</td><td>Set</td><td>35</td></tr>
-        <tr><td>Frosted Gun + Frosted</td><td>Set</td><td>35</td></tr>
-        <tr><td>Stripped Gun + Stripped</td><td>Set</td><td>35</td></tr>
-        <tr><td>Painted Gun + Painted</td><td>Set</td><td>25</td></tr>
-    </table>
+<!-- SETS -->
+<div id="Sets" class="tabcontent">
+  <table>
+    <tr><th>Set Name</th><th>Category</th><th>Value</th></tr>
+    <tr><td>Yellow Streaksflare Gun + Yellow Streaksflare</td><td>Set</td><td>1430</td></tr>
+    <tr><td>Shellshocked Gun + Shellshocked</td><td>Set</td><td>1400</td></tr>
+    <tr><td>Floral Scope + Floral Axe</td><td>Set</td><td>1340</td></tr>
+    <tr><td>Inferno Gun + Inferno</td><td>Set</td><td>1230</td></tr>
+    <tr><td>Chromatic Ginger’s Edge + Gingerswirl</td><td>Set</td><td>980</td></tr>
+    <tr><td>Aurial + Aurion</td><td>Set</td><td>930</td></tr>
+    <tr><td>Chromatic Natural Gun + Natural</td><td>Set</td><td>680</td></tr>
+    <tr><td>Soulpiercer + Soulreaper</td><td>Set</td><td>640</td></tr>
+    <tr><td>Daydream Gun + Daydream</td><td>Set</td><td>630</td></tr>
+    <tr><td>Floral Beam + Floral Blade</td><td>Set</td><td>460</td></tr>
+    <tr><td>Riptidebringer + Riptide</td><td>Set</td><td>460</td></tr>
+    <tr><td>Blue Streaksflare Gun + Blue Streaksflare</td><td>Set</td><td>350</td></tr>
+    <tr><td>Dragonpiercer + Icewood</td><td>Set</td><td>255</td></tr>
+    <tr><td>Natural Gun + Natural</td><td>Set</td><td>180</td></tr>
+    <tr><td>Aurora Gun + Aurora</td><td>Set</td><td>165</td></tr>
+    <tr><td>Wrapped Gun + Wrapped</td><td>Set</td><td>155</td></tr>
+    <tr><td>Fusion Gun + Fusion</td><td>Set</td><td>155</td></tr>
+    <tr><td>Ghostly Gun + Ghostly</td><td>Set</td><td>145</td></tr>
+    <tr><td>Firesky Gun + Firesky</td><td>Set</td><td>125</td></tr>
+    <tr><td>Butterflies Gun + Butterflies</td><td>Set</td><td>115</td></tr>
+    <tr><td>Flowers Gun + Flowers</td><td>Set</td><td>115</td></tr>
+    <tr><td>Pumpkincrow Gun + Pumpkincrow</td><td>Set</td><td>105</td></tr>
+    <tr><td>Bats Gun + Bats</td><td>Set</td><td>75</td></tr>
+    <tr><td>Web Gun + Web</td><td>Set</td><td>75</td></tr>
+    <tr><td>Gingerman Gun + Gingerman</td><td>Set</td><td>60</td></tr>
+    <tr><td>Frosted Lab Gun + Frosted Lab</td><td>Set</td><td>60</td></tr>
+    <tr><td>Gyzen Gun + Gyzen</td><td>Set</td><td>60</td></tr>
+    <tr><td>Minty Gun + Minty</td><td>Set</td><td>60</td></tr>
+    <tr><td>Campfire Gun + Campfire</td><td>Set</td><td>50</td></tr>
+    <tr><td>Scarf Gun + Scarf</td><td>Set</td><td>50</td></tr>
+    <tr><td>Carrots Gun + Carrots</td><td>Set</td><td>50</td></tr>
+    <tr><td>Chocolate Gun + Chocolate</td><td>Set</td><td>35</td></tr>
+    <tr><td>Penguin Gun + Penguin</td><td>Set</td><td>35</td></tr>
+    <tr><td>Glowy Gun + Glowy</td><td>Set</td><td>35</td></tr>
+    <tr><td>Frosted Gun + Frosted</td><td>Set</td><td>35</td></tr>
+    <tr><td>Stripped Gun + Stripped</td><td>Set</td><td>35</td></tr>
+    <tr><td>Painted Gun + Painted</td><td>Set</td><td>25</td></tr>
+  </table>
 </div>
 
-<div class="table-container" id="chromatic">
-    <table>
-        <tr><th>Item</th><th>Type</th><th>Value</th></tr>
-        <tr><td>Cookie Cutter</td><td>Knife</td><td>475</td></tr>
-        <tr><td>Ginger’s Edge</td><td>Knife</td><td>475</td></tr>
-        <tr><td>Gingerswirl</td><td>Gun</td><td>475</td></tr>
-        <tr><td>Natural Gun</td><td>Gun</td><td>350</td></tr>
-        <tr><td>Natural</td><td>Knife</td><td>300</td></tr>
-    </table>
+<!-- CHROMATIC -->
+<div id="Chromatic" class="tabcontent">
+  <table>
+    <tr><th>Item</th><th>Type</th><th>Value</th></tr>
+    <tr><td>Cookie Cutter</td><td>Knife</td><td>475</td></tr>
+    <tr><td>Ginger’s Edge</td><td>Knife</td><td>475</td></tr>
+    <tr><td>Gingerswirl</td><td>Gun</td><td>475</td></tr>
+    <tr><td>Natural Gun</td><td>Gun</td><td>350</td></tr>
+    <tr><td>Natural</td><td>Knife</td><td>300</td></tr>
+  </table>
 </div>
 
-<!-- Repeat similar divs for ANCIENT, GODLY, LEGENDARY, RARE, COMMON -->
-<!-- I can generate ALL categories in full for you if you want -->
+<!-- ANCIENT -->
+<div id="Ancient" class="tabcontent">
+  <table>
+    <tr><th>Item</th><th>Type</th><th>Value</th></tr>
+    <tr><td>Floral Scope</td><td>Gun</td><td>1000</td></tr>
+    <tr><td>Trilogy Axe</td><td>Knife</td><td>675</td></tr>
+    <tr><td>Aurion</td><td>Knife</td><td>450</td></tr>
+    <tr><td>Aurial</td><td>Gun</td><td>450</td></tr>
+    <tr><td>Soulreaper</td><td>Knife</td><td>320</td></tr>
+    <tr><td>Floral Axe</td><td>Knife</td><td>300</td></tr>
+    <tr><td>Soulpiercer</td><td>Gun</td><td>290</td></tr>
+    <tr><td>Cookie Cutter</td><td>Knife</td><td>195</td></tr>
+    <tr><td>San's Batwing</td><td>Knife</td><td>190</td></tr>
+    <tr><td>Galaxy Heat</td><td>Knife</td><td>180</td></tr>
+    <tr><td>Icewood</td><td>Knife</td><td>175</td></tr>
+    <tr><td>Raven Scythe</td><td>Knife</td><td>175</td></tr>
+    <tr><td>Turkey Leg</td><td>Knife</td><td>175</td></tr>
+    <tr><td>Ginger’s Edge</td><td>Knife</td><td>175</td></tr>
+    <tr><td>Gingerswirl</td><td>Gun</td><td>175</td></tr>
+    <tr><td>Mortage Blade</td><td>Gun</td><td>170</td></tr>
+    <tr><td>Thunder Stone</td><td>Knife</td><td>160</td></tr>
+    <tr><td>Mythical Sword</td><td>Gun</td><td>160</td></tr>
+    <tr><td>Hasher</td><td>Knife</td><td>145</td></tr>
+    <tr><td>Natural Gun</td><td>Gun</td><td>75</td></tr>
+    <tr><td>Natural</td><td>Knife</td><td>75</td></tr>
+    <tr><td>Dragon Fire</td><td>Knife</td><td>50</td></tr>
+    <tr><td>Dragonpiercer</td><td>Gun</td><td>50</td></tr>
+    <tr><td>Ultraviolet</td><td>Gun</td><td>50</td></tr>
+    <tr><td>Rainbow Periastron</td><td>Knife</td><td>50</td></tr>
+    <tr><td>Punked Shot</td><td>Gun</td><td>35</td></tr>
+    <tr><td>Overseer Crossbow</td><td>Gun</td><td>20</td></tr>
+  </table>
+</div>
+
+<!-- GODLY -->
+<div id="Godly" class="tabcontent">
+  <table>
+    <tr><th>Item</th><th>Type</th><th>Value</th></tr>
+    <tr><td>Deathshard</td><td>Knife</td><td>900</td></tr>
+    <tr><td>Phaser</td><td>Gun</td><td>850</td></tr>
+    <tr><td>Floral Beam</td><td>Gun</td><td>220</td></tr>
+    <tr><td>Floral Blade</td><td>Gun</td><td>220</td></tr>
+    <tr><td>Riptidebringer</td><td>Gun</td><td>220</td></tr>
+    <tr><td>Riptide</td><td>Knife</td><td>220</td></tr>
+    <tr><td>Deluxe</td><td>Gun</td><td>90</td></tr>
+    <tr><td>Cartelic Scythe</td><td>Knife</td><td>90</td></tr>
+    <tr><td>Unicorn</td><td>Knife</td><td>20</td></tr>
+    <tr><td>Heat</td><td>Knife</td><td>20</td></tr>
+    <tr><td>Sea Crossbow</td><td>Gun</td><td>20</td></tr>
+    <tr><td>Megalodon</td><td>Knife</td><td>20</td></tr>
+    <tr><td>Candy</td><td>Knife</td><td>15</td></tr>
+    <tr><td>Steampunk Glove</td><td>Gun</td><td>10</td></tr>
+  </table>
+</div>
+
+<!-- LEGENDARY -->
+<div id="Legendary" class="tabcontent">
+  <table>
+    <tr><th>Item</th><th>Type</th><th>Value</th></tr>
+    <tr><td>Yellow Streaksflare</td><td>Knife</td><td>700</td></tr>
+    <tr><td>Yellow Streaksflare Gun</td><td>Gun</td><td>700</td></tr>
+    <tr><td>Shellshocked Gun</td><td>Gun</td><td>680</td></tr>
+    <tr><td>Shellshocked</td><td>Knife</td><td>680</td></tr>
+    <tr><td>Popsicle</td><td>Knife</td><td>650</td></tr>
+    <tr><td>Inferno Gun</td><td>Gun</td><td>600</td></tr>
+    <tr><td>Inferno</td><td>Knife</td><td>600</td></tr>
+    <tr><td>Daydream Gun</td><td>Gun</td><td>300</td></tr>
+    <tr><td>Daydream</td><td>Knife</td><td>300</td></tr>
+    <tr><td>Blue Streaksflare Gun</td><td>Gun</td><td>160</td></tr>
+    <tr><td>Blue Streaksflare</td><td>Knife</td><td>160</td></tr>
+    <tr><td>Aurora Gun</td><td>Gun</td><td>70</td></tr>
+    <tr><td>Aurora</td><td>Knife</td><td>70</td></tr>
+    <tr><td>Wrapped Gun</td><td>Gun</td><td>65</td></tr>
+    <tr><td>Wrapped</td><td>Knife</td><td>65</td></tr>
+    <tr><td>Fusion Gun</td><td>Gun</td><td>65</td></tr>
+    <tr><td>Fusion</td><td>Knife</td><td>65</td></tr>
+    <tr><td>Ghostly Gun</td><td>Gun</td><td>60</td></tr>
+    <tr><td>Ghostly</td><td>Knife</td><td>60</td></tr>
+    <tr><td>Firesky Gun</td><td>Gun</td><td>50</td></tr>
+    <tr><td>Firesky</td><td>Knife</td><td>50</td></tr>
+    <tr><td>Pumpkincrow Gun</td><td>Gun</td><td>40</td></tr>
+    <tr><td>Pumpkincrow</td><td>Knife</td><td>40</td></tr>
+    <tr><td>Spitter</td><td>Gun</td><td>15</td></tr>
+    <tr><td>Fasterloust</td><td>Knife</td><td>15</td></tr>
+    <tr><td>Water Gun</td><td>Gun</td><td>15</td></tr>
+    <tr><td>Fang</td><td>Knife</td><td>15</td></tr>
+    <tr><td>Rainbow Blaster</td><td>Gun</td><td>15</td></tr>
+    <tr><td>West Wind</td><td>Knife</td><td>15</td></tr>
+    <tr><td>Ignite</td><td>Gun</td><td>15</td></tr>
+    <tr><td>Tides</td><td>Knife</td><td>15</td></tr>
+  </table>
+</div>
+
+<!-- RARE -->
+<div id="Rare" class="tabcontent">
+  <table>
+    <tr><th>Item</th><th>Type</th><th>Value</th></tr>
+    <tr><td>Epic Redness</td><td>Knife</td><td>820</td></tr>
+    <tr><td>Bluesteel Bow</td><td>Gun</td><td>800</td></tr>
+    <tr><td>Battle Axe</td><td>Knife</td><td>730</td></tr>
+    <tr><td>Tropical Gun</td><td>Gun</td><td>720</td></tr>
+    <tr><td>Amerilaser</td><td>Gun</td><td>700</td></tr>
+    <tr><td>Butterflies Gun</td><td>Gun</td><td>50</td></tr>
+    <tr><td>Butterflies</td><td>Knife</td><td>50</td></tr>
+    <tr><td>Flowers Gun</td><td>Gun</td><td>50</td></tr>
+    <tr><td>Flowers</td><td>Knife</td><td>50</td></tr>
+    <tr><td>Bats Gun</td><td>Gun</td><td>30</td></tr>
+    <tr><td>Bats</td><td>Knife</td><td>30</td></tr>
+    <tr><td>Web Gun</td><td>Gun</td><td>30</td></tr>
+    <tr><td>Web</td><td>Knife</td><td>30</td></tr>
+    <tr><td>Gingerman Gun</td><td>Gun</td><td>25</td></tr>
+    <tr><td>Gingerman</td><td>Knife</td><td>25</td></tr>
+    <tr><td>Frosted Lab Gun</td><td>Gun</td><td>25</td></tr>
+    <tr><td>Frosted Lab</td><td>Knife</td><td>25</td></tr>
+    <tr><td>Gyzen Gun</td><td>Gun</td><td>25</td></tr>
+    <tr><td>Gyzen</td><td>Knife</td><td>25</td></tr>
+    <tr><td>Minty Gun</td><td>Gun</td><td>25</td></tr>
+    <tr><td>Minty</td><td>Knife</td><td>25</td></tr>
+    <tr><td>Campfire Gun</td><td>Gun</td><td>20</td></tr>
+    <tr><td>Campfire</td><td>Knife</td><td>20</td></tr>
+    <tr><td>Scarf Gun</td><td>Gun</td><td>20</td></tr>
+    <tr><td>Scarf</td><td>Knife</td><td>20</td></tr>
+    <tr><td>Carrots Gun</td><td>Gun</td><td>20</td></tr>
+    <tr><td>Carrots</td><td>Knife</td><td>20</td></tr>
+    <tr><td>Overseer's Axe</td><td>Knife</td><td>10</td></tr>
+    <tr><td>Midnight</td><td>Knife</td><td>10</td></tr>
+    <tr><td>Xmas</td><td>Knife</td><td>10</td></tr>
+    <tr><td>Retribution Ray</td><td>Gun</td><td>10</td></tr>
+    <tr><td>Laser</td><td>Gun</td><td>10</td></tr>
+    <tr><td>Flames</td><td>Knife</td><td>10</td></tr>
+    <tr><td>Hyperion</td><td>Gun</td><td>10</td></tr>
+    <tr><td>Luger</td><td>Gun</td><td>10</td></tr>
+  </table>
+</div>
+
+<!-- COMMON -->
+<div id="Common" class="tabcontent">
+  <table>
+    <tr><th>Item</th><th>Type</th><th>Value</th></tr>
+    <tr><td>Stickers</td><td>Knife</td><td>70</td></tr>
+    <tr><td>Chocolate Gun</td><td>Gun</td><td>15</td></tr>
+    <tr><td>Chocolate</td><td>Knife</td><td>15</td></tr>
+    <tr><td>Penguin Gun</td><td>Gun</td><td>15</td></tr>
+    <tr><td>Penguin</td><td>Knife</td><td>15</td></tr>
+    <tr><td>Glowy Gun</td><td>Gun</td><td>15</td></tr>
+    <tr><td>Glowy</td><td>Knife</td><td>15</td></tr>
+    <tr><td>Frosted Gun</td><td>Gun</td><td>15</td></tr>
+    <tr><td>Frosted</td><td>Knife</td><td>15</td></tr>
+    <tr><td>Stripped Gun</td><td>Gun</td><td>15</td></tr>
+    <tr><td>Stripped</td><td>Knife</td><td>15</td></tr>
+    <tr><td>Painted Gun</td><td>Gun</td><td>10</td></tr>
+    <tr><td>Painted</td><td>Knife</td><td>10</td></tr>
+    <tr><td>Ice Dragon</td><td>Knife</td><td>5</td></tr>
+    <tr><td>Princess Scepter</td><td>Knife</td><td>5</td></tr>
+    <tr><td>Floral Bow</td><td>Gun</td><td>5</td></tr>
+    <tr><td>Red Seer</td><td>Knife</td><td>5</td></tr>
+    <tr><td>Purple Seer</td><td>Knife</td><td>5</td></tr>
+    <tr><td>Orange Seer</td><td>Knife</td><td>5</td></tr>
+    <tr><td>Saw</td><td>Knife</td><td>5</td></tr>
+    <tr><td>Sugar</td><td>Gun</td><td>5</td></tr>
+    <tr><td>Shark</td><td>Gun</td><td>5</td></tr>
+    <tr><td>Batwing</td><td>Knife</td><td>5</td></tr>
+    <tr><td>Seer</td><td>Knife</td><td>5</td></tr>
+    <tr><td>Yellow Seer</td><td>Knife</td><td>5</td></tr>
+    <tr><td>Golden</td><td>Gun</td><td>5</td></tr>
+    <tr><td>Blue Seer</td><td>Knife</td><td>5</td></tr>
+  </table>
+</div>
 
 <script>
-    const tabs = document.querySelectorAll('.tab');
-    const tables = document.querySelectorAll('.table-container');
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            tables.forEach(table => table.classList.remove('active'));
-            document.getElementById(tab.dataset.target).classList.add('active');
-        });
-    });
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+document.getElementById("defaultOpen").click();
 </script>
 </body>
 </html>
