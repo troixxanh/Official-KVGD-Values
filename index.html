@@ -480,6 +480,95 @@ window.addEventListener('DOMContentLoaded', () => {
 </html>
 
 </script>
+<!-- --- Spark Trail & Explosion Effects for Tabs --- -->
+<style>
+/* Spark styles */
+.spark {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    transition: all 0.8s ease-out;
+    box-shadow: 0 0 6px var(--accent), 0 0 10px var(--secondary);
+}
+</style>
+
+<script>
+// Colors
+const colors = ['#00bcd4', '#ff9800'];
+
+// Create spark function
+function createSpark(parent, x, y) {
+    const spark = document.createElement('div');
+    spark.classList.add('spark');
+    spark.style.left = `${x + (Math.random()*20-10)}px`;
+    spark.style.top = `${y + (Math.random()*20-10)}px`;
+    spark.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+    parent.appendChild(spark);
+
+    const rotateDeg = Math.random() * 360 - 180;
+    const translateX = Math.random() * 20 - 10;
+    const translateY = Math.random() * 20 - 10;
+
+    // Animate fade, shrink, rotate, wobble
+    setTimeout(() => {
+        spark.style.opacity = '0';
+        spark.style.transform = `scale(0) rotate(${rotateDeg}deg) translate(${translateX}px, ${translateY}px)`;
+    }, 10);
+
+    setTimeout(() => spark.remove(), 810);
+}
+
+// Apply sparks to all tab buttons
+const tabs = document.querySelectorAll('.tab-button');
+tabs.forEach(tab => {
+    // Hover trail
+    tab.addEventListener('mousemove', e => {
+        const rect = tab.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        if (Math.random() < 0.3) createSpark(tab, x, y);
+    });
+
+    // Click explosion
+    tab.addEventListener('click', e => {
+        const rect = tab.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        for (let i=0; i<8; i++){
+            createSpark(tab, x + (Math.random()*30-15), y + (Math.random()*30-15));
+        }
+    });
+});
+</script>
+
+<script>
+// Optional: Animate tab switching with spark effect
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const rect = tab.getBoundingClientRect();
+        for (let i=0; i<5; i++){
+            createSpark(tab, rect.width/2 + (Math.random()*40-20), rect.height/2 + (Math.random()*20-10));
+        }
+    });
+});
+</script>
+
+<style>
+/* Optional glow + shimmer effect for active tab */
+.tab-button.active {
+    box-shadow: 0 0 12px var(--accent), 0 0 20px var(--secondary);
+    transition: box-shadow 0.4s ease, background 0.3s ease;
+}
+
+/* Smooth hover glow */
+.tab-button:hover {
+    box-shadow: 0 0 8px var(--accent), 0 0 12px var(--secondary);
+}
+</style>
 
 </body>
 </html>
