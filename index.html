@@ -581,6 +581,187 @@ window.addEventListener('resize', () => {
     if(active) moveUnderline(active);
 });
 </script>
+<style>
+/* --- Animated, color-shifting underline for active tab with bounce --- */
+.tabs {
+    position: relative;
+}
+
+.tab-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #00bcd4, #ff9800);
+    width: 0;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* bounce */
+}
+
+.tab-button:hover {
+    background-color: #00bcd4; /* accent on hover */
+    color: #121212;
+}
+</style>
+
+<script>
+// --- Animated underline with bounce logic ---
+const underline = document.createElement('div');
+underline.classList.add('tab-underline');
+document.querySelector('.tabs').appendChild(underline);
+
+function moveUnderline(activeButton) {
+    const rect = activeButton.getBoundingClientRect();
+    const tabsRect = activeButton.parentElement.getBoundingClientRect();
+    underline.style.width = rect.width + 'px';
+    underline.style.transform = `translateX(${rect.left - tabsRect.left}px)`;
+}
+
+// Update underline on tab click
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        moveUnderline(button);
+    });
+});
+
+// Initialize underline on page load
+window.addEventListener('DOMContentLoaded', () => {
+    if(tabButtons.length > 0){
+        moveUnderline(tabButtons[0]);
+    }
+});
+
+// Move underline on window resize
+window.addEventListener('resize', () => {
+    const active = document.querySelector('.tab-button.active');
+    if(active) moveUnderline(active);
+});
+</script>
+<style>
+/* --- Glowing pulse for active tab --- */
+.tab-button.active {
+    box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #ff9800;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #ff9800;
+    }
+    50% {
+        box-shadow: 0 0 15px #00bcd4, 0 0 25px #00bcd4, 0 0 40px #ff9800;
+    }
+    100% {
+        box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #ff9800;
+    }
+}
+</style>
+<style>
+/* --- Glowing pulse for active tab --- */
+.tab-button.active {
+    box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #ff9800;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+/* --- Glow on hover --- */
+.tab-button:hover {
+    box-shadow: 0 0 5px #00bcd4, 0 0 10px #00bcd4, 0 0 15px #ff9800;
+}
+
+/* --- Pulse animation --- */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #ff9800;
+    }
+    50% {
+        box-shadow: 0 0 15px #00bcd4, 0 0 25px #00bcd4, 0 0 40px #ff9800;
+    }
+    100% {
+        box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #ff9800;
+    }
+}
+</style>
+<style>
+/* --- Glowing pulse for active tab --- */
+.tab-button.active {
+    box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #ff9800;
+    animation: pulseGlow 2s infinite alternate;
+}
+
+/* --- Glow on hover --- */
+.tab-button:hover {
+    box-shadow: 0 0 5px #00bcd4, 0 0 10px #00bcd4, 0 0 15px #ff9800;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* --- Pulse animation --- */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #ff9800;
+    }
+    50% {
+        box-shadow: 0 0 15px #00bcd4, 0 0 25px #00bcd4, 0 0 40px #ff9800;
+    }
+    100% {
+        box-shadow: 0 0 10px #00bcd4, 0 0 20px #00bcd4, 0 0 30px #ff9800;
+    }
+}
+
+/* Optional: subtle background glow behind all tabs container */
+.tabs {
+    transition: box-shadow 0.3s ease-in-out;
+}
+.tabs:hover {
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.3), 0 0 30px rgba(255, 152, 0, 0.2);
+}
+</style>
+<style>
+/* --- Glowing pulse for active tab --- */
+.tab-button.active {
+    box-shadow: 0 0 12px #00bcd4, 0 0 25px #00bcd4, 0 0 35px #ff9800;
+    animation: pulseGlow 2s infinite alternate;
+    transition: all 0.3s ease-in-out;
+}
+
+/* --- Glow on hover --- */
+.tab-button:hover {
+    box-shadow: 0 0 8px #00bcd4, 0 0 15px #00bcd4, 0 0 25px #ff9800;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+/* --- Pulse animation --- */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 12px #00bcd4, 0 0 25px #00bcd4, 0 0 35px #ff9800;
+    }
+    50% {
+        box-shadow: 0 0 20px #00bcd4, 0 0 30px #00bcd4, 0 0 50px #ff9800;
+    }
+    100% {
+        box-shadow: 0 0 12px #00bcd4, 0 0 25px #00bcd4, 0 0 35px #ff9800;
+    }
+}
+
+/* --- Smooth transition for tab switching --- */
+.tab-content {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.tab-content.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: subtle background glow behind all tabs container */
+.tabs {
+    transition: box-shadow 0.3s ease-in-out;
+}
+.tabs:hover {
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.3), 0 0 30px rgba(255, 152, 0, 0.2);
+}
+</style>
 
 </body>
 </html>
