@@ -569,6 +569,173 @@ tabs.forEach(tab => {
     box-shadow: 0 0 8px var(--accent), 0 0 12px var(--secondary);
 }
 </style>
+<!-- --- FUTURISTIC ENHANCEMENTS FOR KVGD VALUES --- -->
+<style>
+/* --- Neon glow and futuristic tab effects --- */
+.tab-button {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.tab-button::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0,188,212,0.3), transparent 70%);
+    transform: scale(0);
+    transition: transform 0.5s ease;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: 8px;
+}
+.tab-button:hover::before {
+    transform: scale(1);
+}
+.tab-button.active {
+    box-shadow: 0 0 16px var(--accent), 0 0 30px var(--secondary);
+    border: 1px solid var(--accent);
+}
+
+/* --- Spark effects (hover/click) --- */
+.spark {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    transition: all 0.8s ease-out;
+    box-shadow: 0 0 6px var(--accent), 0 0 10px var(--secondary);
+}
+
+/* --- Table futuristic hover --- */
+table tr:hover {
+    background-color: #2a2a2a;
+    box-shadow: 0 0 20px rgba(0,188,212,0.3);
+    transform: scale(1.01);
+    transition: all 0.3s ease;
+}
+
+/* --- Content fade/slide --- */
+.tab-content {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.5s ease;
+}
+.tab-content.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Background particle effect --- */
+#particle-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* --- Neon cursor trail --- */
+.cursor-trail {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.8;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent), 0 0 20px var(--secondary);
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s ease, opacity 0.2s ease;
+}
+</style>
+
+<div id="particle-bg"></div>
+
+<script>
+// --- Tab Sparks ---
+const tabs = document.querySelectorAll('.tab-button');
+function createSpark(parent, x, y) {
+    const spark = document.createElement('div');
+    spark.classList.add('spark');
+    spark.style.left = `${x + (Math.random()*20-10)}px`;
+    spark.style.top = `${y + (Math.random()*20-10)}px`;
+    spark.style.backgroundColor = ['#00bcd4','#ff9800'][Math.floor(Math.random()*2)];
+    parent.appendChild(spark);
+    const rotateDeg = Math.random()*360-180;
+    const translateX = Math.random()*20-10;
+    const translateY = Math.random()*20-10;
+    setTimeout(()=>{
+        spark.style.opacity='0';
+        spark.style.transform=`scale(0) rotate(${rotateDeg}deg) translate(${translateX}px,${translateY}px)`;
+    },10);
+    setTimeout(()=>spark.remove(),810);
+}
+tabs.forEach(tab=>{
+    tab.addEventListener('mousemove', e=>{
+        const rect = tab.getBoundingClientRect();
+        const x = e.clientX-rect.left;
+        const y = e.clientY-rect.top;
+        if(Math.random()<0.3) createSpark(tab,x,y);
+    });
+    tab.addEventListener('click', e=>{
+        const rect = tab.getBoundingClientRect();
+        const x = e.clientX-rect.left;
+        const y = e.clientY-rect.top;
+        for(let i=0;i<8;i++) createSpark(tab,x+Math.random()*30-15,y+Math.random()*30-15);
+    });
+});
+
+// --- Background particles ---
+const particleContainer = document.getElementById('particle-bg');
+for(let i=0;i<60;i++){
+    const p = document.createElement('div');
+    p.style.position='absolute';
+    p.style.width='4px';
+    p.style.height='4px';
+    p.style.background='rgba(0,188,212,0.2)';
+    p.style.borderRadius='50%';
+    p.style.left=Math.random()*window.innerWidth+'px';
+    p.style.top=Math.random()*window.innerHeight+'px';
+    p.style.animation=`float ${5+Math.random()*5}s ease-in-out infinite alternate`;
+    particleContainer.appendChild(p);
+}
+
+// Particle keyframes
+const styleSheet = document.createElement("style");
+styleSheet.innerHTML = `
+@keyframes float {
+    0% {transform: translateY(0px);}
+    100% {transform: translateY(${20+Math.random()*30}px);}
+}
+`;
+document.head.appendChild(styleSheet);
+
+// --- Cursor trail ---
+const trail = [];
+for(let i=0;i<8;i++){
+    const t = document.createElement('div');
+    t.classList.add('cursor-trail');
+    document.body.appendChild(t);
+    trail.push(t);
+}
+document.addEventListener('mousemove', e=>{
+    trail.forEach((t,i)=>{
+        setTimeout(()=>{
+            t.style.left=e.clientX+'px';
+            t.style.top=e.clientY+'px';
+        }, i*30);
+    });
+});
+</script>
 
 </body>
 </html>
