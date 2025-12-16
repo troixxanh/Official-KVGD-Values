@@ -475,6 +475,57 @@ window.addEventListener('DOMContentLoaded', () => {
     transform: translateY(0);
 }
 </style>
+<style>
+/* --- Animated underline for active tab --- */
+.tabs {
+    position: relative;
+}
+
+.tab-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    background-color: var(--accent);
+    width: 0;
+    transition: all 0.3s ease;
+}
+
+</style>
+
+<script>
+// --- Animated underline logic ---
+const underline = document.createElement('div');
+underline.classList.add('tab-underline');
+document.querySelector('.tabs').appendChild(underline);
+
+function moveUnderline(activeButton) {
+    const rect = activeButton.getBoundingClientRect();
+    const tabsRect = activeButton.parentElement.getBoundingClientRect();
+    underline.style.width = rect.width + 'px';
+    underline.style.transform = `translateX(${rect.left - tabsRect.left}px)`;
+}
+
+// Update underline on tab click
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        moveUnderline(button);
+    });
+});
+
+// Initialize underline on page load
+window.addEventListener('DOMContentLoaded', () => {
+    if(tabButtons.length > 0){
+        moveUnderline(tabButtons[0]);
+    }
+});
+
+// Optional: move underline on window resize
+window.addEventListener('resize', () => {
+    const active = document.querySelector('.tab-button.active');
+    if(active) moveUnderline(active);
+});
+</script>
 
 </body>
 </html>
