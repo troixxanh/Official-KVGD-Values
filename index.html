@@ -1,401 +1,505 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>KVGD Official Value List</title>
-<style>
-  body {
-    background-color: #0d0f14;
-    color: #cfd8dc;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-  }
-  header {
-    background: linear-gradient(90deg, #0a0c12, #1a2233);
-    padding: 20px;
-    text-align: center;
-    border-bottom: 2px solid #222;
-  }
-  h1 { margin: 0; font-size: 2rem; color: #4fc3f7; }
-  h2 { margin: 5px 0 15px; font-size: 1rem; color: #90caf9; font-weight: normal; }
-  .last-updated { font-size: 0.85rem; color: #78909c; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huy & Ryz Value List (Sidearm/Melee)</title>
+    <style>
+        /* --- CSS for Sleek Dark Mode & Layout --- */
+        :root {
+            --color-bg: #1e1e1e;
+            --color-card-bg: #2d2d2d;
+            --color-text: #e0e0e0;
+            --color-accent: #00bcd4; /* Cyan/Teal for a professional look */
+            --color-secondary-accent: #ff9800; /* Orange for demands */
+            --color-border: #444;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  .tab {
-    overflow: hidden;
-    background-color: #0a0d14;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    border-bottom: 2px solid #222;
-  }
-  .tab button {
-    background-color: inherit;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 12px 25px;
-    margin: 2px;
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #90caf9;
-    border-radius: 6px 6px 0 0;
-    transition: all 0.3s;
-  }
-  .tab button:hover { background-color: #1a2233; color: #4fc3f7; }
-  .tab button.active { background-color: #4fc3f7; color: #0d0f14; }
+        body {
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            font-family: var(--font-family);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-  .controls {
-    display: flex;
-    justify-content: center;
-    margin: 20px;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-  .controls input, .controls select {
-    padding: 8px 12px;
-    border-radius: 5px;
-    border: none;
-    outline: none;
-    font-size: 0.95rem;
-  }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            padding: 20px;
+        }
 
-  table {
-    width: 95%;
-    margin: 0 auto 40px auto;
-    border-collapse: collapse;
-    background-color: #1a1f28;
-    border-radius: 10px;
-    overflow: hidden;
-    font-size: 0.95rem;
-  }
-  th, td { padding: 12px 15px; text-align: left; }
-  th { background-color: #2a3140; color: #4fc3f7; cursor: pointer; }
-  tr:nth-child(even) { background-color: #14191f; }
-  tr:hover { background-color: #1f2530; }
+        /* --- Header & Title --- */
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--color-accent);
+        }
+        .header h1 {
+            color: var(--color-text);
+            font-size: 2.5em;
+            margin: 0;
+        }
+        .header p {
+            color: var(--color-accent);
+            font-size: 1.1em;
+            margin: 5px 0 0 0;
+        }
+        .update-info {
+            font-size: 0.9em;
+            color: #aaa;
+            margin-top: 10px;
+        }
 
-  .tabcontent { display: none; animation: fadeEffect 0.3s; }
-  @keyframes fadeEffect { from {opacity: 0;} to {opacity: 1;} }
+        /* --- Tabs/Navigation --- */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
 
-  /* Rarity Colors */
-  .legendary { color: #ffd700; font-weight: 600; }
-  .godly { color: #ba68c8; font-weight: 600; }
-  .ancient { color: #4dd0e1; font-weight: 600; }
-  .chromatic { color: #80deea; font-weight: 600; }
-  .rare { color: #29b6f6; font-weight: 600; }
-  .common { color: #cfd8dc; }
+        .tab-button {
+            background: var(--color-card-bg);
+            color: var(--color-text);
+            border: 1px solid var(--color-border);
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
 
-  @media screen and (max-width: 768px) {
-    th, td { font-size: 0.85rem; padding: 8px 10px; }
-    .tab button { padding: 10px 18px; font-size: 0.85rem; }
-    .controls { flex-direction: column; align-items: center; }
-  }
-</style>
+        .tab-button:hover {
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+        }
+
+        .tab-button.active {
+            background-color: var(--color-accent);
+            color: var(--color-bg);
+            border-color: var(--color-accent);
+            box-shadow: 0 4px 15px rgba(0, 188, 212, 0.5);
+        }
+
+        /* --- Content Sections --- */
+        .tab-content {
+            display: none; /* Hidden by default */
+            padding: 10px;
+            background: var(--color-card-bg);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .content-heading {
+            border-bottom: 2px solid var(--color-border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            color: var(--color-accent);
+            text-align: center;
+        }
+
+        /* --- Value List Table --- */
+        .value-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed; /* Ensures columns are fixed width */
+        }
+
+        .value-table th, .value-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .value-table th {
+            background-color: #383838;
+            color: var(--color-accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .value-table tr:nth-child(even) {
+            background-color: #333;
+        }
+
+        .value-table tr:hover {
+            background-color: #3d3d3d;
+            cursor: default;
+        }
+
+        .value-table .value {
+            text-align: right;
+            font-weight: 600;
+            color: var(--color-secondary-accent);
+            width: 80px; /* Fixed width for value column */
+        }
+
+        .value-table .type {
+            font-style: italic;
+            color: #aaa;
+            width: 100px; /* Fixed width for type column */
+        }
+
+        /* Rarity-specific coloring (Optional, for extra flair) */
+        #chromatic .item-name { color: #f266a4; } /* Pink/Magenta */
+        #ancient .item-name { color: #8e44ad; } /* Purple */
+        #godly .item-name { color: #f1c40f; }   /* Gold/Yellow */
+        #legendary .item-name { color: #3498db; } /* Blue */
+        #rare .item-name { color: #2ecc71; }    /* Green */
+        #common .item-name { color: #7f8c8d; }  /* Gray */
+        #collections .item-name { color: var(--color-accent); } /* Teal */
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            .tabs {
+                flex-direction: column;
+                gap: 5px;
+            }
+            .tab-button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .value-table th, .value-table td {
+                padding: 8px 10px;
+                font-size: 0.9em;
+            }
+            .value-table .type, .value-table .value {
+                width: auto;
+            }
+            .value-table th:nth-child(3), .value-table td:nth-child(3) {
+                display: none; /* Hide 'Type' column on mobile for space */
+            }
+        }
+    </style>
 </head>
 <body>
 
-<header>
-  <h1>KVGD Official Value List</h1>
-  <h2>Knife VS Gun DUELS – Professional Community List</h2>
-  <p class="last-updated">Last Updated: December 15th, 2025 | Next Planned Update: Demands Section</p>
-</header>
+<div class="container">
+    <header class="header">
+        <h1>⚔️ Value List 🔫</h1>
+        <p>A Professional Trading Index by **Huy & Ryz**</p>
+        <div class="update-info">
+            **Last Updated:** December 15th, 2025 | **Next Update:** Demands Section
+        </div>
+    </header>
 
-<div class="controls">
-  <input type="text" id="searchInput" placeholder="Search items...">
-  <select id="sortSelect">
-    <option value="">Sort by Value</option>
-    <option value="asc">Value: Low to High</option>
-    <option value="desc">Value: High to Low</option>
-  </select>
-</div>
+    <div class="tabs">
+        <button class="tab-button active" data-tab="collections">Collections</button>
+        <button class="tab-button" data-tab="chromatic">Chromatic</button>
+        <button class="tab-button" data-tab="ancient">Ancient</button>
+        <button class="tab-button" data-tab="godly">Godly</button>
+        <button class="tab-button" data-tab="legendary">Legendary</button>
+        <button class="tab-button" data-tab="rare">Rare</button>
+        <button class="tab-button" data-tab="common">Common</button>
+    </div>
 
-<div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'sets')" id="defaultOpen">SETS</button>
-  <button class="tablinks" onclick="openTab(event, 'chromatic')">CHROMATIC</button>
-  <button class="tablinks" onclick="openTab(event, 'ancient')">ANCIENT</button>
-  <button class="tablinks" onclick="openTab(event, 'godly')">GODLY</button>
-  <button class="tablinks" onclick="openTab(event, 'legendary')">LEGENDARY</button>
-  <button class="tablinks" onclick="openTab(event, 'rare')">RARE</button>
-  <button class="tablinks" onclick="openTab(event, 'common')">COMMON</button>
-</div>
+    <section id="collections" class="tab-content active">
+        <h2 class="content-heading">Collections (Sets)</h2>
+        <table class="value-table">
+            <thead>
+                <tr>
+                    <th>Item Name</th>
+                    <th class="type">Type</th>
+                    <th class="value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td class="item-name">Yellow Streaksflare Sidearm + Yellow Streaksflare Collection</td><td class="type">Collection</td><td class="value">1430</td></tr>
+                <tr><td class="item-name">Shellshocked Sidearm + Shellshocked Collection</td><td class="type">Collection</td><td class="value">1400</td></tr>
+                <tr><td class="item-name">Floral Scope + Floral Axe Collection</td><td class="type">Collection</td><td class="value">1340</td></tr>
+                <tr><td class="item-name">Inferno Sidearm + Inferno Collection</td><td class="type">Collection</td><td class="value">1230</td></tr>
+                <tr><td class="item-name">Chromatic Ginger’s Edge + Gingerswirl Collection</td><td class="type">Collection</td><td class="value">980</td></tr>
+                <tr><td class="item-name">Aurial + Aurion Collection</td><td class="type">Collection</td><td class="value">930</td></tr>
+                <tr><td class="item-name">Chromatic Natural Sidearm + Natural Collection</td><td class="type">Collection</td><td class="value">680</td></tr>
+                <tr><td class="item-name">Soulpiercer + Soulreaper Collection</td><td class="type">Collection</td><td class="value">640</td></tr>
+                <tr><td class="item-name">Daydream Sidearm + Daydream Collection</td><td class="type">Collection</td><td class="value">630</td></tr>
+                <tr><td class="item-name">Floral Beam + Floral Blade Collection</td><td class="type">Collection</td><td class="value">460</td></tr>
+                <tr><td class="item-name">Riptidebringer + Riptide Collection</td><td class="type">Collection</td><td class="value">460</td></tr>
+                <tr><td class="item-name">Blue Streaksflare Sidearm + Blue Streaksflare Collection</td><td class="type">Collection</td><td class="value">350</td></tr>
+                <tr><td class="item-name">Dragonpiercer + Icewood Collection</td><td class="type">Collection</td><td class="value">255</td></tr>
+                <tr><td class="item-name">Natural Sidearm + Natural Collection</td><td class="type">Collection</td><td class="value">180</td></tr>
+                <tr><td class="item-name">Aurora Sidearm + Aurora Collection</td><td class="type">Collection</td><td class="value">165</td></tr>
+                <tr><td class="item-name">Wrapped Sidearm + Wrapped Collection</td><td class="type">Collection</td><td class="value">155</td></tr>
+                <tr><td class="item-name">Fusion Sidearm + Fusion Collection</td><td class="type">Collection</td><td class="value">155</td></tr>
+                <tr><td class="item-name">Ghostly Sidearm + Ghostly Collection</td><td class="type">Collection</td><td class="value">145</td></tr>
+                <tr><td class="item-name">Firesky Sidearm + Firesky Collection</td><td class="type">Collection</td><td class="value">125</td></tr>
+                <tr><td class="item-name">Butterflies Sidearm + Butterflies Collection</td><td class="type">Collection</td><td class="value">115</td></tr>
+                <tr><td class="item-name">Flowers Sidearm + Flowers Collection</td><td class="type">Collection</td><td class="value">115</td></tr>
+                <tr><td class="item-name">Pumpkincrow Sidearm + Pumpkincrow Collection</td><td class="type">Collection</td><td class="value">105</td></tr>
+                <tr><td class="item-name">Bats Sidearm + Bats Collection</td><td class="type">Collection</td><td class="value">75</td></tr>
+                <tr><td class="item-name">Web Sidearm + Web Collection</td><td class="type">Collection</td><td class="value">75</td></tr>
+                <tr><td class="item-name">Gingerman Sidearm + Gingerman Collection</td><td class="type">Collection</td><td class="value">60</td></tr>
+                <tr><td class="item-name">Frosted Lab Sidearm + Frosted Lab Collection</td><td class="type">Collection</td><td class="value">60</td></tr>
+                <tr><td class="item-name">Gyzen Sidearm + Gyzen Collection</td><td class="type">Collection</td><td class="value">60</td></tr>
+                <tr><td class="item-name">Minty Sidearm + Minty Collection</td><td class="type">Collection</td><td class="value">60</td></tr>
+                <tr><td class="item-name">Campfire Sidearm + Campfire Collection</td><td class="type">Collection</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Scarf Sidearm + Scarf Collection</td><td class="type">Collection</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Carrots Sidearm + Carrots Collection</td><td class="type">Collection</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Chocolate Sidearm + Chocolate Collection</td><td class="type">Collection</td><td class="value">35</td></tr>
+                <tr><td class="item-name">Penguin Sidearm + Penguin Collection</td><td class="type">Collection</td><td class="value">35</td></tr>
+                <tr><td class="item-name">Glowy Sidearm + Glowy Collection</td><td class="type">Collection</td><td class="value">35</td></tr>
+                <tr><td class="item-name">Frosted Sidearm + Frosted Collection</td><td class="type">Collection</td><td class="value">35</td></tr>
+                <tr><td class="item-name">Stripped Sidearm + Stripped Collection</td><td class="type">Collection</td><td class="value">35</td></tr>
+                <tr><td class="item-name">Painted Sidearm + Painted Collection</td><td class="type">Collection</td><td class="value">25</td></tr>
+            </tbody>
+        </table>
+    </section>
 
-<!-- ==================== TABLES ==================== -->
-<div id="sets" class="tabcontent">
-  <table>
-    <thead><tr><th>Item</th><th>Category</th><th>Value</th></tr></thead>
-    <tbody>
-      <tr><td>Yellow Streaksflare Gun + Yellow Streaksflare</td><td>Set</td><td class="legendary">1430</td></tr>
-      <tr><td>Shellshocked Gun + Shellshocked</td><td>Set</td><td class="legendary">1400</td></tr>
-      <tr><td>Floral Scope + Floral Axe</td><td>Set</td><td class="ancient">1340</td></tr>
-      <tr><td>Inferno Gun + Inferno</td><td>Set</td><td class="legendary">1230</td></tr>
-      <tr><td>Chromatic Ginger’s Edge + Gingerswirl</td><td>Set</td><td class="chromatic">980</td></tr>
-      <tr><td>Aurial + Aurion</td><td>Set</td><td class="ancient">930</td></tr>
-      <tr><td>Chromatic Natural Gun + Natural</td><td>Set</td><td class="chromatic">680</td></tr>
-      <tr><td>Soulpiercer + Soulreaper</td><td>Set</td><td class="ancient">640</td></tr>
-      <tr><td>Daydream Gun + Daydream</td><td>Set</td><td class="legendary">630</td></tr>
-      <tr><td>Floral Beam + Floral Blade</td><td>Set</td><td class="godly">460</td></tr>
-      <tr><td>Riptidebringer + Riptide</td><td>Set</td><td class="godly">460</td></tr>
-      <tr><td>Blue Streaksflare Gun + Blue Streaksflare</td><td>Set</td><td class="legendary">350</td></tr>
-      <tr><td>Dragonpiercer + Icewood</td><td>Set</td><td class="ancient">255</td></tr>
-      <tr><td>Natural Gun + Natural</td><td>Set</td><td class="ancient">180</td></tr>
-      <tr><td>Aurora Gun + Aurora</td><td>Set</td><td class="legendary">165</td></tr>
-      <tr><td>Wrapped Gun + Wrapped</td><td>Set</td><td class="legendary">155</td></tr>
-      <tr><td>Fusion Gun + Fusion</td><td>Set</td><td class="legendary">155</td></tr>
-      <tr><td>Ghostly Gun + Ghostly</td><td>Set</td><td class="legendary">145</td></tr>
-      <tr><td>Firesky Gun + Firesky</td><td>Set</td><td class="legendary">125</td></tr>
-      <tr><td>Butterflies Gun + Butterflies</td><td>Set</td><td class="rare">115</td></tr>
-      <tr><td>Flowers Gun + Flowers</td><td>Set</td><td class="rare">115</td></tr>
-      <tr><td>Pumpkincrow Gun + Pumpkincrow</td><td>Set</td><td class="legendary">105</td></tr>
-      <tr><td>Bats Gun + Bats</td><td>Set</td><td class="rare">75</td></tr>
-      <tr><td>Web Gun + Web</td><td>Set</td><td class="rare">75</td></tr>
-      <tr><td>Gingerman Gun + Gingerman</td><td>Set</td><td class="rare">60</td></tr>
-      <tr><td>Frosted Lab Gun + Frosted Lab</td><td>Set</td><td class="rare">60</td></tr>
-      <tr><td>Gyzen Gun + Gyzen</td><td>Set</td><td class="rare">60</td></tr>
-      <tr><td>Minty Gun + Minty</td><td>Set</td><td class="rare">60</td></tr>
-      <tr><td>Campfire Gun + Campfire</td><td>Set</td><td class="rare">50</td></tr>
-      <tr><td>Scarf Gun + Scarf</td><td>Set</td><td class="rare">50</td></tr>
-      <tr><td>Carrots Gun + Carrots</td><td>Set</td><td class="rare">50</td></tr>
-      <tr><td>Chocolate Gun + Chocolate</td><td>Set</td><td class="common">35</td></tr>
-      <tr><td>Penguin Gun + Penguin</td><td>Set</td><td class="common">35</td></tr>
-      <tr><td>Glowy Gun + Glowy</td><td>Set</td><td class="common">35</td></tr>
-      <tr><td>Frosted Gun + Frosted</td><td>Set</td><td class="common">35</td></tr>
-      <tr><td>Stripped Gun + Stripped</td><td>Set</td><td class="common">35</td></tr>
-      <tr><td>Painted Gun + Painted</td><td>Set</td><td class="common">25</td></tr>
-    </tbody>
-  </table>
-</div>
+    <section id="chromatic" class="tab-content">
+        <h2 class="content-heading">Chromatic</h2>
+        <table class="value-table">
+            <thead>
+                <tr><th>Item Name</th><th class="type">Type</th><th class="value">Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td class="item-name">Cookie Cutter</td><td class="type">Melee</td><td class="value">475</td></tr>
+                <tr><td class="item-name">Ginger’s Edge</td><td class="type">Melee</td><td class="value">475</td></tr>
+                <tr><td class="item-name">Gingerswirl</td><td class="type">Sidearm</td><td class="value">475</td></tr>
+                <tr><td class="item-name">Natural Sidearm</td><td class="type">Sidearm</td><td class="value">350</td></tr>
+                <tr><td class="item-name">Natural</td><td class="type">Melee</td><td class="value">300</td></tr>
+            </tbody>
+        </table>
+    </section>
 
-<div id="chromatic" class="tabcontent">
-  <table>
-    <thead><tr><th>Item</th><th>Type</th><th>Value</th></tr></thead>
-    <tbody>
-      <tr><td>Cookie Cutter</td><td>Knife</td><td class="chromatic">475</td></tr>
-      <tr><td>Ginger’s Edge</td><td>Knife</td><td class="chromatic">475</td></tr>
-      <tr><td>Gingerswirl</td><td>Gun</td><td class="chromatic">475</td></tr>
-      <tr><td>Natural Gun</td><td>Gun</td><td class="chromatic">350</td></tr>
-      <tr><td>Natural</td><td>Knife</td><td class="chromatic">300</td></tr>
-    </tbody>
-  </table>
-</div>
+    <section id="ancient" class="tab-content">
+        <h2 class="content-heading">Ancient</h2>
+        <table class="value-table">
+            <thead>
+                <tr><th>Item Name</th><th class="type">Type</th><th class="value">Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td class="item-name">Floral Scope</td><td class="type">Sidearm</td><td class="value">1000</td></tr>
+                <tr><td class="item-name">Trilogy Axe</td><td class="type">Melee</td><td class="value">675</td></tr>
+                <tr><td class="item-name">Aurion</td><td class="type">Melee</td><td class="value">450</td></tr>
+                <tr><td class="item-name">Aurial</td><td class="type">Sidearm</td><td class="value">450</td></tr>
+                <tr><td class="item-name">Soulreaper</td><td class="type">Melee</td><td class="value">320</td></tr>
+                <tr><td class="item-name">Floral Axe</td><td class="type">Melee</td><td class="value">300</td></tr>
+                <tr><td class="item-name">Soulpiercer</td><td class="type">Sidearm</td><td class="value">290</td></tr>
+                <tr><td class="item-name">Cookie Cutter</td><td class="type">Melee</td><td class="value">195</td></tr>
+                <tr><td class="item-name">San's Batwing</td><td class="type">Melee</td><td class="value">190</td></tr>
+                <tr><td class="item-name">Galaxy Heat</td><td class="type">Melee</td><td class="value">180</td></tr>
+                <tr><td class="item-name">Icewood</td><td class="type">Melee</td><td class="value">175</td></tr>
+                <tr><td class="item-name">Raven Scythe</td><td class="type">Melee</td><td class="value">175</td></tr>
+                <tr><td class="item-name">Turkey Leg</td><td class="type">Melee</td><td class="value">175</td></tr>
+                <tr><td class="item-name">Ginger’s Edge</td><td class="type">Melee</td><td class="value">175</td></tr>
+                <tr><td class="item-name">Gingerswirl</td><td class="type">Sidearm</td><td class="value">175</td></tr>
+                <tr><td class="item-name">Mortage Blade</td><td class="type">Sidearm</td><td class="value">170</td></tr>
+                <tr><td class="item-name">Thunder Stone</td><td class="type">Melee</td><td class="value">160</td></tr>
+                <tr><td class="item-name">Mythical Sword</td><td class="type">Sidearm</td><td class="value">160</td></tr>
+                <tr><td class="item-name">Hasher</td><td class="type">Melee</td><td class="value">145</td></tr>
+                <tr><td class="item-name">Natural Sidearm</td><td class="type">Sidearm</td><td class="value">75</td></tr>
+                <tr><td class="item-name">Natural</td><td class="type">Melee</td><td class="value">75</td></tr>
+                <tr><td class="item-name">Dragon Fire</td><td class="type">Melee</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Dragonpiercer</td><td class="type">Sidearm</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Ultraviolet</td><td class="type">Sidearm</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Rainbow Periastron</td><td class="type">Melee</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Punked Shot</td><td class="type">Sidearm</td><td class="value">35</td></tr>
+                <tr><td class="item-name">Overseer Crossbow</td><td class="type">Sidearm</td><td class="value">20</td></tr>
+            </tbody>
+        </table>
+    </section>
 
-<div id="ancient" class="tabcontent">
-  <table>
-    <thead><tr><th>Item</th><th>Type</th><th>Value</th></tr></thead>
-    <tbody>
-      <tr><td>Floral Scope</td><td>Gun</td><td class="ancient">1000</td></tr>
-      <tr><td>Trilogy Axe</td><td>Knife</td><td class="ancient">675</td></tr>
-      <tr><td>Aurion</td><td>Knife</td><td class="ancient">450</td></tr>
-      <tr><td>Aurial</td><td>Gun</td><td class="ancient">450</td></tr>
-      <tr><td>Soulreaper</td><td>Knife</td><td class="ancient">320</td></tr>
-      <tr><td>Floral Axe</td><td>Knife</td><td class="ancient">300</td></tr>
-      <tr><td>Soulpiercer</td><td>Gun</td><td class="ancient">290</td></tr>
-      <tr><td>Cookie Cutter</td><td>Knife</td><td class="ancient">195</td></tr>
-      <tr><td>San’s Batwing</td><td>Knife</td><td class="ancient">190</td></tr>
-      <tr><td>Galaxy Heat</td><td>Knife</td><td class="ancient">180</td></tr>
-      <tr><td>Icewood</td><td>Knife</td><td class="ancient">175</td></tr>
-      <tr><td>Raven Scythe</td><td>Knife</td><td class="ancient">175</td></tr>
-      <tr><td>Turkey Leg</td><td>Knife</td><td class="ancient">175</td></tr>
-      <tr><td>Ginger’s Edge</td><td>Knife</td><td class="ancient">175</td></tr>
-      <tr><td>Gingerswirl</td><td>Gun</td><td class="ancient">175</td></tr>
-      <tr><td>Mortage Blade</td><td>Gun</td><td class="ancient">170</td></tr>
-      <tr><td>Thunder Stone</td><td>Knife</td><td class="ancient">160</td></tr>
-      <tr><td>Mythical Sword</td><td>Gun</td><td class="ancient">160</td></tr>
-      <tr><td>Hasher</td><td>Knife</td><td class="ancient">145</td></tr>
-      <tr><td>Natural Gun</td><td>Gun</td><td class="ancient">75</td></tr>
-      <tr><td>Natural</td><td>Knife</td><td class="ancient">75</td></tr>
-      <tr><td>Dragon Fire</td><td>Knife</td><td class="ancient">50</td></tr>
-      <tr><td>Dragonpiercer</td><td>Gun</td><td class="ancient">50</td></tr>
-      <tr><td>Ultraviolet</td><td>Gun</td><td class="ancient">50</td></tr>
-      <tr><td>Rainbow Periastron</td><td>Knife</td><td class="ancient">50</td></tr>
-      <tr><td>Punked Shot</td><td>Gun</td><td class="ancient">35</td></tr>
-      <tr><td>Overseer Crossbow</td><td>Gun</td><td class="ancient">20</td></tr>
-    </tbody>
-  </table>
-</div>
-  
-<div id="godly" class="tabcontent">
-  <table>
-    <thead><tr><th>Item</th><th>Type</th><th>Value</th></tr></thead>
-    <tbody>
-      <tr><td>Deathshard</td><td>Knife</td><td class="godly">900</td></tr>
-      <tr><td>Phaser</td><td>Gun</td><td class="godly">850</td></tr>
-      <tr><td>Floral Beam</td><td>Gun</td><td class="godly">220</td></tr>
-      <tr><td>Floral Blade</td><td>Gun</td><td class="godly">220</td></tr>
-      <tr><td>Riptidebringer</td><td>Gun</td><td class="godly">220</td></tr>
-      <tr><td>Riptide</td><td>Knife</td><td class="godly">220</td></tr>
-      <tr><td>Deluxe</td><td>Gun</td><td class="godly">90</td></tr>
-      <tr><td>Cartelic Scythe</td><td>Knife</td><td class="godly">90</td></tr>
-      <tr><td>Unicorn</td><td>Knife</td><td class="godly">20</td></tr>
-      <tr><td>Heat</td><td>Knife</td><td class="godly">20</td></tr>
-      <tr><td>Sea Crossbow</td><td>Gun</td><td class="godly">20</td></tr>
-      <tr><td>Megalodon</td><td>Knife</td><td class="godly">20</td></tr>
-      <tr><td>Candy</td><td>Knife</td><td class="godly">15</td></tr>
-      <tr><td>Steampunk Glove</td><td>Gun</td><td class="godly">10</td></tr>
-    </tbody>
-  </table>
-</div>
+    <section id="godly" class="tab-content">
+        <h2 class="content-heading">Godly</h2>
+        <table class="value-table">
+            <thead>
+                <tr><th>Item Name</th><th class="type">Type</th><th class="value">Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td class="item-name">Deathshard</td><td class="type">Melee</td><td class="value">900</td></tr>
+                <tr><td class="item-name">Phaser</td><td class="type">Sidearm</td><td class="value">850</td></tr>
+                <tr><td class="item-name">Floral Beam</td><td class="type">Sidearm</td><td class="value">220</td></tr>
+                <tr><td class="item-name">Floral Blade</td><td class="type">Sidearm</td><td class="value">220</td></tr>
+                <tr><td class="item-name">Riptidebringer</td><td class="type">Sidearm</td><td class="value">220</td></tr>
+                <tr><td class="item-name">Riptide</td><td class="type">Melee</td><td class="value">220</td></tr>
+                <tr><td class="item-name">Deluxe</td><td class="type">Sidearm</td><td class="value">90</td></tr>
+                <tr><td class="item-name">Cartelic Scythe</td><td class="type">Melee</td><td class="value">90</td></tr>
+                <tr><td class="item-name">Unicorn</td><td class="type">Melee</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Heat</td><td class="type">Melee</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Sea Crossbow</td><td class="type">Sidearm</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Megalodon</td><td class="type">Melee</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Candy</td><td class="type">Melee</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Steampunk Glove</td><td class="type">Sidearm</td><td class="value">10</td></tr>
+            </tbody>
+        </table>
+    </section>
 
-<div id="legendary" class="tabcontent">
-  <table>
-    <thead><tr><th>Item</th><th>Type</th><th>Value</th></tr></thead>
-    <tbody>
-      <tr><td>Yellow Streaksflare</td><td>Knife</td><td class="legendary">700</td></tr>
-      <tr><td>Yellow Streaksflare Gun</td><td>Gun</td><td class="legendary">700</td></tr>
-      <tr><td>Shellshocked Gun</td><td>Gun</td><td class="legendary">680</td></tr>
-      <tr><td>Shellshocked</td><td>Knife</td><td class="legendary">680</td></tr>
-      <tr><td>Popsicle</td><td>Knife</td><td class="legendary">650</td></tr>
-      <tr><td>Inferno Gun</td><td>Gun</td><td class="legendary">600</td></tr>
-      <tr><td>Inferno</td><td>Knife</td><td class="legendary">600</td></tr>
-      <tr><td>Daydream Gun</td><td>Gun</td><td class="legendary">300</td></tr>
-      <tr><td>Daydream</td><td>Knife</td><td class="legendary">300</td></tr>
-      <tr><td>Blue Streaksflare Gun</td><td>Gun</td><td class="legendary">160</td></tr>
-      <tr><td>Blue Streaksflare</td><td>Knife</td><td class="legendary">160</td></tr>
-      <tr><td>Aurora Gun</td><td>Gun</td><td class="legendary">70</td></tr>
-      <tr><td>Aurora</td><td>Knife</td><td class="legendary">70</td></tr>
-      <tr><td>Wrapped Gun</td><td>Gun</td><td class="legendary">65</td></tr>
-      <tr><td>Wrapped</td><td>Knife</td><td class="legendary">65</td></tr>
-      <tr><td>Fusion Gun</td><td>Gun</td><td class="legendary">65</td></tr>
-      <tr><td>Fusion</td><td>Knife</td><td class="legendary">65</td></tr>
-      <tr><td>Ghostly Gun</td><td>Gun</td><td class="legendary">60</td></tr>
-      <tr><td>Ghostly</td><td>Knife</td><td class="legendary">60</td></tr>
-      <tr><td>Firesky Gun</td><td>Gun</td><td class="legendary">50</td></tr>
-      <tr><td>Firesky</td><td>Knife</td><td class="legendary">50</td></tr>
-      <tr><td>Pumpkincrow Gun</td><td>Gun</td><td class="legendary">40</td></tr>
-      <tr><td>Pumpkincrow</td><td>Knife</td><td class="legendary">40</td></tr>
-      <tr><td>Spitter</td><td>Gun</td><td class="legendary">15</td></tr>
-      <tr><td>Fasterloust</td><td>Knife</td><td class="legendary">15</td></tr>
-      <tr><td>Water Gun</td><td>Gun</td><td class="legendary">15</td></tr>
-      <tr><td>Fang</td><td>Knife</td><td class="legendary">15</td></tr>
-      <tr><td>Rainbow Blaster</td><td>Gun</td><td class="legendary">15</td></tr>
-      <tr><td>West Wind</td><td>Knife</td><td class="legendary">15</td></tr>
-      <tr><td>Ignite</td><td>Gun</td><td class="legendary">15</td></tr>
-      <tr><td>Tides</td><td>Knife</td><td class="legendary">15</td></tr>
-    </tbody>
-  </table>
-</div>
+    <section id="legendary" class="tab-content">
+        <h2 class="content-heading">Legendary</h2>
+        <table class="value-table">
+            <thead>
+                <tr><th>Item Name</th><th class="type">Type</th><th class="value">Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td class="item-name">Yellow Streaksflare</td><td class="type">Melee</td><td class="value">700</td></tr>
+                <tr><td class="item-name">Yellow Streaksflare Sidearm</td><td class="type">Sidearm</td><td class="value">700</td></tr>
+                <tr><td class="item-name">Shellshocked Sidearm</td><td class="type">Sidearm</td><td class="value">680</td></tr>
+                <tr><td class="item-name">Shellshocked</td><td class="type">Melee</td><td class="value">680</td></tr>
+                <tr><td class="item-name">Popsicle</td><td class="type">Melee</td><td class="value">650</td></tr>
+                <tr><td class="item-name">Inferno Sidearm</td><td class="type">Sidearm</td><td class="value">600</td></tr>
+                <tr><td class="item-name">Inferno</td><td class="type">Melee</td><td class="value">600</td></tr>
+                <tr><td class="item-name">Daydream Sidearm</td><td class="type">Sidearm</td><td class="value">300</td></tr>
+                <tr><td class="item-name">Daydream</td><td class="type">Melee</td><td class="value">300</td></tr>
+                <tr><td class="item-name">Blue Streaksflare Sidearm</td><td class="type">Sidearm</td><td class="value">160</td></tr>
+                <tr><td class="item-name">Blue Streaksflare</td><td class="type">Melee</td><td class="value">160</td></tr>
+                <tr><td class="item-name">Aurora Sidearm</td><td class="type">Sidearm</td><td class="value">70</td></tr>
+                <tr><td class="item-name">Aurora</td><td class="type">Melee</td><td class="value">70</td></tr>
+                <tr><td class="item-name">Wrapped Sidearm</td><td class="type">Sidearm</td><td class="value">65</td></tr>
+                <tr><td class="item-name">Wrapped</td><td class="type">Melee</td><td class="value">65</td></tr>
+                <tr><td class="item-name">Fusion Sidearm</td><td class="type">Sidearm</td><td class="value">65</td></tr>
+                <tr><td class="item-name">Fusion</td><td class="type">Melee</td><td class="value">65</td></tr>
+                <tr><td class="item-name">Ghostly Sidearm</td><td class="type">Sidearm</td><td class="value">60</td></tr>
+                <tr><td class="item-name">Ghostly</td><td class="type">Melee</td><td class="value">60</td></tr>
+                <tr><td class="item-name">Firesky Sidearm</td><td class="type">Sidearm</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Firesky</td><td class="type">Melee</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Pumpkincrow Sidearm</td><td class="type">Sidearm</td><td class="value">40</td></tr>
+                <tr><td class="item-name">Pumpkincrow</td><td class="type">Melee</td><td class="value">40</td></tr>
+                <tr><td class="item-name">Spitter</td><td class="type">Sidearm</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Fasterloust</td><td class="type">Melee</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Water Sidearm</td><td class="type">Sidearm</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Fang</td><td class="type">Melee</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Rainbow Blaster</td><td class="type">Sidearm</td><td class="value">15</td></tr>
+                <tr><td class="item-name">West Wind</td><td class="type">Melee</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Ignite</td><td class="type">Sidearm</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Tides</td><td class="type">Melee</td><td class="value">15</td></tr>
+            </tbody>
+        </table>
+    </section>
 
-<div id="rare" class="tabcontent">
-  <table>
-    <thead><tr><th>Item</th><th>Type</th><th>Value</th></tr></thead>
-    <tbody>
-      <tr><td>Epic Redness</td><td>Knife</td><td class="rare">820</td></tr>
-      <tr><td>Bluesteel Bow</td><td>Gun</td><td class="rare">800</td></tr>
-      <tr><td>Battle Axe</td><td>Knife</td><td class="rare">730</td></tr>
-      <tr><td>Tropical Gun</td><td>Gun</td><td class="rare">720</td></tr>
-      <tr><td>Amerilaser</td><td>Gun</td><td class="rare">700</td></tr>
-      <tr><td>Butterflies Gun</td><td>Gun</td><td class="rare">50</td></tr>
-      <tr><td>Butterflies</td><td>Knife</td><td class="rare">50</td></tr>
-      <tr><td>Flowers Gun</td><td>Gun</td><td class="rare">50</td></tr>
-      <tr><td>Flowers</td><td>Knife</td><td class="rare">50</td></tr>
-      <tr><td>Bats Gun</td><td>Gun</td><td class="rare">30</td></tr>
-      <tr><td>Bats</td><td>Knife</td><td class="rare">30</td></tr>
-      <tr><td>Web Gun</td><td>Gun</td><td class="rare">30</td></tr>
-      <tr><td>Web</td><td>Knife</td><td class="rare">30</td></tr>
-      <tr><td>Gingerman Gun</td><td>Gun</td><td class="rare">25</td></tr>
-      <tr><td>Gingerman</td><td>Knife</td><td class="rare">25</td></tr>
-      <tr><td>Frosted Lab Gun</td><td>Gun</td><td class="rare">25</td></tr>
-      <tr><td>Frosted Lab</td><td>Knife</td><td class="rare">25</td></tr>
-      <tr><td>Gyzen Gun</td><td>Gun</td><td class="rare">25</td></tr>
-      <tr><td>Gyzen</td><td>Knife</td><td class="rare">25</td></tr>
-      <tr><td>Minty Gun</td><td>Gun</td><td class="rare">25</td></tr>
-      <tr><td>Minty</td><td>Knife</td><td class="rare">25</td></tr>
-      <tr><td>Campfire Gun</td><td>Gun</td><td class="rare">20</td></tr>
-      <tr><td>Campfire</td><td>Knife</td><td class="rare">20</td></tr>
-      <tr><td>Scarf Gun</td><td>Gun</td><td class="rare">20</td></tr>
-      <tr><td>Scarf</td><td>Knife</td><td class="rare">20</td></tr>
-      <tr><td>Carrots Gun</td><td>Gun</td><td class="rare">20</td></tr>
-      <tr><td>Carrots</td><td>Knife</td><td class="rare">20</td></tr>
-      <tr><td>Overseer's Axe</td><td>Knife</td><td class="rare">10</td></tr>
-      <tr><td>Midnight</td><td>Knife</td><td class="rare">10</td></tr>
-      <tr><td>Xmas</td><td>Knife</td><td class="rare">10</td></tr>
-      <tr><td>Retribution Ray</td><td>Gun</td><td class="rare">10</td></tr>
-      <tr><td>Laser</td><td>Gun</td><td class="rare">10</td></tr>
-      <tr><td>Flames</td><td>Knife</td><td class="rare">10</td></tr>
-      <tr><td>Hyperion</td><td>Gun</td><td class="rare">10</td></tr>
-      <tr><td>Luger</td><td>Gun</td><td class="rare">10</td></tr>
-    </tbody>
-  </table>
-</div>
+    <section id="rare" class="tab-content">
+        <h2 class="content-heading">Rare</h2>
+        <table class="value-table">
+            <thead>
+                <tr><th>Item Name</th><th class="type">Type</th><th class="value">Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td class="item-name">Epic Redness</td><td class="type">Melee</td><td class="value">820</td></tr>
+                <tr><td class="item-name">Bluesteel Bow</td><td class="type">Sidearm</td><td class="value">800</td></tr>
+                <tr><td class="item-name">Battle Axe</td><td class="type">Melee</td><td class="value">730</td></tr>
+                <tr><td class="item-name">Tropical Sidearm</td><td class="type">Sidearm</td><td class="value">720</td></tr>
+                <tr><td class="item-name">Amerilaser</td><td class="type">Sidearm</td><td class="value">700</td></tr>
+                <tr><td class="item-name">Butterflies Sidearm</td><td class="type">Sidearm</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Butterflies</td><td class="type">Melee</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Flowers Sidearm</td><td class="type">Sidearm</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Flowers</td><td class="type">Melee</td><td class="value">50</td></tr>
+                <tr><td class="item-name">Bats Sidearm</td><td class="type">Sidearm</td><td class="value">30</td></tr>
+                <tr><td class="item-name">Bats</td><td class="type">Melee</td><td class="value">30</td></tr>
+                <tr><td class="item-name">Web Sidearm</td><td class="type">Sidearm</td><td class="value">30</td></tr>
+                <tr><td class="item-name">Web</td><td class="type">Melee</td><td class="value">30</td></tr>
+                <tr><td class="item-name">Gingerman Sidearm</td><td class="type">Sidearm</td><td class="value">25</td></tr>
+                <tr><td class="item-name">Gingerman</td><td class="type">Melee</td><td class="value">25</td></tr>
+                <tr><td class="item-name">Frosted Lab Sidearm</td><td class="type">Sidearm</td><td class="value">25</td></tr>
+                <tr><td class="item-name">Frosted Lab</td><td class="type">Melee</td><td class="value">25</td></tr>
+                <tr><td class="item-name">Gyzen Sidearm</td><td class="type">Sidearm</td><td class="value">25</td></tr>
+                <tr><td class="item-name">Gyzen</td><td class="type">Melee</td><td class="value">25</td></tr>
+                <tr><td class="item-name">Minty Sidearm</td><td class="type">Sidearm</td><td class="value">25</td></tr>
+                <tr><td class="item-name">Minty</td><td class="type">Melee</td><td class="value">25</td></tr>
+                <tr><td class="item-name">Campfire Sidearm</td><td class="type">Sidearm</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Campfire</td><td class="type">Melee</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Scarf Sidearm</td><td class="type">Sidearm</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Scarf</td><td class="type">Melee</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Carrots Sidearm</td><td class="type">Sidearm</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Carrots</td><td class="type">Melee</td><td class="value">20</td></tr>
+                <tr><td class="item-name">Overseer's Axe</td><td class="type">Melee</td><td class="value">10</td></tr>
+                <tr><td class="item-name">Midnight</td><td class="type">Melee</td><td class="value">10</td></tr>
+                <tr><td class="item-name">Xmas</td><td class="type">Melee</td><td class="value">10</td></tr>
+                <tr><td class="item-name">Retribution Ray</td><td class="type">Sidearm</td><td class="value">10</td></tr>
+                <tr><td class="item-name">Laser</td><td class="type">Sidearm</td><td class="value">10</td></tr>
+                <tr><td class="item-name">Flames</td><td class="type">Melee</td><td class="value">10</td></tr>
+                <tr><td class="item-name">Hyperion</td><td class="type">Sidearm</td><td class="value">10</td></tr>
+                <tr><td class="item-name">Luger</td><td class="type">Sidearm</td><td class="value">10</td></tr>
+            </tbody>
+        </table>
+    </section>
 
-<div id="common" class="tabcontent">
-  <table>
-    <thead><tr><th>Item</th><th>Type</th><th>Value</th></tr></thead>
-    <tbody>
-      <tr><td>Stickers</td><td>Knife</td><td class="common">70</td></tr>
-      <tr><td>Chocolate Gun</td><td>Gun</td><td class="common">15</td></tr>
-      <tr><td>Chocolate</td><td>Knife</td><td class="common">15</td></tr>
-      <tr><td>Penguin Gun</td><td>Gun</td><td class="common">15</td></tr>
-      <tr><td>Penguin</td><td>Knife</td><td class="common">15</td></tr>
-      <tr><td>Glowy Gun</td><td>Gun</td><td class="common">15</td></tr>
-      <tr><td>Glowy</td><td>Knife</td><td class="common">15</td></tr>
-      <tr><td>Frosted Gun</td><td>Gun</td><td class="common">15</td></tr>
-      <tr><td>Frosted</td><td>Knife</td><td class="common">15</td></tr>
-      <tr><td>Stripped Gun</td><td>Gun</td><td class="common">15</td></tr>
-      <tr><td>Stripped</td><td>Knife</td><td class="common">15</td></tr>
-      <tr><td>Painted Gun</td><td>Gun</td><td class="common">10</td></tr>
-      <tr><td>Painted</td><td>Knife</td><td class="common">10</td></tr>
-      <tr><td>Ice Dragon</td><td>Knife</td><td class="common">5</td></tr>
-      <tr><td>Princess Scepter</td><td>Knife</td><td class="common">5</td></tr>
-      <tr><td>Floral Bow</td><td>Gun</td><td class="common">5</td></tr>
-      <tr><td>Red Seer</td><td>Knife</td><td class="common">5</td></tr>
-      <tr><td>Purple Seer</td><td>Knife</td><td class="common">5</td></tr>
-      <tr><td>Orange Seer</td><td>Knife</td><td class="common">5</td></tr>
-      <tr><td>Saw</td><td>Knife</td><td class="common">5</td></tr>
-      <tr><td>Sugar</td><td>Gun</td><td class="common">5</td></tr>
-      <tr><td>Shark</td><td>Gun</td><td class="common">5</td></tr>
-      <tr><td>Batwing</td><td>Knife</td><td class="common">5</td></tr>
-      <tr><td>Seer</td><td>Knife</td><td class="common">5</td></tr>
-      <tr><td>Yellow Seer</td><td>Knife</td><td class="common">5</td></tr>
-      <tr><td>Golden</td><td>Gun</td><td class="common">5</td></tr>
-      <tr><td>Blue Seer</td><td>Knife</td><td class="common">5</td></tr>
-    </tbody>
-  </table>
+    <section id="common" class="tab-content">
+        <h2 class="content-heading">Common</h2>
+        <table class="value-table">
+            <thead>
+                <tr><th>Item Name</th><th class="type">Type</th><th class="value">Value</th></tr>
+            </thead>
+            <tbody>
+                <tr><td class="item-name">Stickers</td><td class="type">Melee</td><td class="value">70</td></tr>
+                <tr><td class="item-name">Chocolate Sidearm</td><td class="type">Sidearm</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Chocolate</td><td class="type">Melee</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Penguin Sidearm</td><td class="type">Sidearm</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Penguin</td><td class="type">Melee</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Glowy Sidearm</td><td class="type">Sidearm</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Glowy</td><td class="type">Melee</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Frosted Sidearm</td><td class="type">Sidearm</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Frosted</td><td class="type">Melee</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Stripped Sidearm</td><td class="type">Sidearm</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Stripped</td><td class="type">Melee</td><td class="value">15</td></tr>
+                <tr><td class="item-name">Painted Sidearm</td><td class="type">Sidearm</td><td class="value">10</td></tr>
+                <tr><td class="item-name">Painted</td><td class="type">Melee</td><td class="value">10</td></tr>
+                <tr><td class="item-name">Ice Dragon</td><td class="type">Melee</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Princess Scepter</td><td class="type">Melee</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Floral Bow</td><td class="type">Sidearm</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Red Seer</td><td class="type">Melee</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Purple Seer</td><td class="type">Melee</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Orange Seer</td><td class="type">Melee</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Saw</td><td class="type">Melee</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Sugar</td><td class="type">Sidearm</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Shark</td><td class="type">Sidearm</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Batwing</td><td class="type">Melee</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Seer</td><td class="type">Melee</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Yellow Seer</td><td class="type">Melee</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Golden</td><td class="type">Sidearm</td><td class="value">5</td></tr>
+                <tr><td class="item-name">Blue Seer</td><td class="type">Melee</td><td class="value">5</td></tr>
+            </tbody>
+        </table>
+    </section>
+
 </div>
 
 <script>
-  // Tab switching
-  function openTab(evt, tabName) {
-    let i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) { tabcontent[i].style.display = "none"; }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-  }
-  document.getElementById("defaultOpen").click();
+    // --- JavaScript for Tab Functionality ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabs = document.querySelectorAll('.tab-button');
+        const contents = document.querySelectorAll('.tab-content');
 
-  // Search functionality
-  const searchInput = document.getElementById("searchInput");
-  searchInput.addEventListener("keyup", function() {
-    const filter = searchInput.value.toLowerCase();
-    document.querySelectorAll(".tabcontent.active table tbody tr").forEach(row => {
-      row.style.display = row.innerText.toLowerCase().includes(filter) ? "" : "none";
-    });
-  });
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Get the ID of the content to show
+                const targetId = tab.dataset.tab;
 
-  // Sort functionality
-  const sortSelect = document.getElementById("sortSelect");
-  sortSelect.addEventListener("change", function() {
-    const activeTable = document.querySelector(".tabcontent.active table tbody");
-    const rows = Array.from(activeTable.querySelectorAll("tr"));
-    const order = sortSelect.value;
-    if (!order) return;
-    rows.sort((a, b) => {
-      const valA = parseInt(a.cells[2].innerText);
-      const valB = parseInt(b.cells[2].innerText);
-      return order === "asc" ? valA - valB : valB - valA;
-    });
-    rows.forEach(row => activeTable.appendChild(row));
-  });
+                // Remove 'active' class from all buttons and content
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
 
-  // Update search and sort when tab changes
-  document.querySelectorAll(".tablinks").forEach(btn => {
-    btn.addEventListener("click", () => {
-      searchInput.dispatchEvent(new Event("keyup"));
-      sortSelect.dispatchEvent(new Event("change"));
+                // Add 'active' class to the clicked button
+                tab.classList.add('active');
+
+                // Show the corresponding content
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Optional: Ensure the first tab ('Collections') is visible on load
+        if (tabs.length > 0) {
+            tabs[0].click();
+        }
     });
-  });
 </script>
 
 </body>
