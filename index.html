@@ -15,6 +15,57 @@
         --hover: #333;
         --font: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+<script>
+// --- Tab functionality ---
+const tabButtons = document.querySelectorAll('.tab-button');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const target = document.querySelector(button.dataset.tab);
+
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        tabContents.forEach(content => content.classList.remove('active'));
+
+        button.classList.add('active');
+        target.classList.add('active');
+
+        // Smooth scroll to top of tabs on mobile
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+});
+
+// Optional: set first tab as active on load
+window.addEventListener('DOMContentLoaded', () => {
+    if(tabButtons.length > 0){
+        tabButtons[0].classList.add('active');
+        tabContents[0].classList.add('active');
+    }
+});
+</script>
+
+<style>
+/* Sticky tabs */
+.tabs {
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    padding-top: 15px;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+}
+
+/* Smooth fade in for content */
+.tab-content {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.5s ease;
+}
+.tab-content.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+</style>
 
     body {
         background-color: var(--bg);
